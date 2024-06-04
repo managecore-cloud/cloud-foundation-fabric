@@ -104,6 +104,13 @@ output "subnet_ips" {
   }
 }
 
+output "subnet_gateways" {
+  description = "Map of gateway address ranges keyed by name."
+  value = {
+    for k, v in google_compute_subnetwork.subnetwork : k => v.gateway_address
+  }
+}
+
 output "subnet_ipv6_external_prefixes" {
   description = "Map of subnet external IPv6 prefixes keyed by name."
   value = {
